@@ -10,6 +10,9 @@ class CompositionsController < ApplicationController
   # GET /compositions/1
   # GET /compositions/1.json
   def show
+    if(@composition.user.id != current_user.id)
+      redirect_to compositions_path
+    end
   end
 
   # GET /compositions/new
@@ -25,6 +28,7 @@ class CompositionsController < ApplicationController
   # POST /compositions.json
   def create
     @composition = Composition.new(composition_params)
+    @composition.user = current_user
 
     respond_to do |format|
       if @composition.save
