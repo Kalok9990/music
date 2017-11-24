@@ -1,5 +1,6 @@
 class CompositionsController < ApplicationController
   before_action :set_composition, only: [:show, :edit, :update, :destroy]
+  before_action :authentication!
 
   # GET /compositions
   # GET /compositions.json
